@@ -1,1 +1,1 @@
-web: python -m http.server process.env.PORT
+web: gunicorn myapp:app --log-file -
