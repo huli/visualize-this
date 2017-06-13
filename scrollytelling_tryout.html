@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<style>
+
+body{
+  max-width: 900px;
+  margin: 0px auto;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#container{
+  position: relative;
+}
+
+#sections{
+  width: 340px;
+}
+
+#sections > div{
+  background: white;
+  opacity: .2;
+  margin-bottom: 200px;
+}
+#sections > div:last-child{
+  margin-bottom: 30px;
+}
+#sections > div.graph-scroll-active{
+  opacity: 1;
+}
+
+#graph{
+  margin-left: 40px;
+  width: 500px;
+  position: absolute;
+  top: 0px;
+  margin-left: 380px;
+}
+
+.graph-scroll-fixed #graph{
+  position: fixed;
+  top: 0px;
+}
+
+.graph-scroll-below #graph{
+  bottom: 0px;
+  top: auto;
+}
+
+@media (max-width: 925px)  {
+  #graph{
+    width: 100%;
+    transform: translate(-50%, 0);
+    margin-left: 50%;
+  }
+
+  #sections{
+    position: relative;
+    margin: 0px auto;
+    padding-top: 400px;
+  }
+
+  #sections div{
+    background: rgba(255,255,255,.5);
+    padding: 10px;
+    border: 1px solid;
+    max-width: 400px;
+    margin-bottom: 500px;
+  }
+}
+
+h1{
+  margin: 50px;
+}
+
+h1, h3{
+  text-align: center;
+}
+
+circle{
+  fill: steelblue;
+}
+
+.mono{
+  font-family: monospace;
+}
+
+svg{
+  background-color: #eee;
+}
+
+</style>
+
+<h1>Scrollytelling</h1>
+<h3>Simple scrolling events for d3 graphics.</h3>
+
+<div id='container'>
+    <div id='graph'></div>
+    <div id='sections'>
+        <div>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+            sed diam voluptua. At vero eos et accusam et
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+            sed diam voluptua. At vero eos et accusam et
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+            sed diam voluptua. At vero eos et accusam et
+        </div>
+    </div>
+</div>
+
+<div id='container'>
+    <div id='graph'></div>
+    <div id='sections'>
+        <div>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+            sed diam voluptua. At vero eos et accusam et
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+            sed diam voluptua. At vero eos et accusam et
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+            sed diam voluptua. At vero eos et accusam et
+        </div>
+    </div>
+</div>
+
+
+<div id='container'>
+    <div id='graph'></div>
+    <div id='sections'>
+        <div>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+            sed diam voluptua. At vero eos et accusam et
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+            sed diam voluptua. At vero eos et accusam et
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+            sed diam voluptua. At vero eos et accusam et
+        </div>
+    </div>
+</div>
+
+
+
+<script src="d3v4+jetpack.js"></script>
+<script src="graph-scroll.js"></script>
+<script>
+  var oldWidth = 0
+  function render(){
+    d3.graphScroll()
+        .sections(d3.selectAll('#sections > div'))
+        .on('active', function(i){ console.log(i + 'th section active') })
+  }
+  render()
+  d3.select(window).on('resize', render)
+</script>
