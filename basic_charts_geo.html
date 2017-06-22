@@ -40,6 +40,17 @@
     </style>
 
     <script type="text/javascript">
+
+      function isHomeTown(d)
+      {
+          return (d['home'] == d['team1']);
+      }
+
+      function isHomeLegend(d)
+      {
+          return (d  == "Home Teams");
+      }
+
       function draw(data) {
 
           "use strict";
@@ -115,17 +126,48 @@
               return count_scale(d['attendance']);
             })
             .attr("r", function(d){
-              if(d['home'] == d['team1'])
+              if(isHomeTown(d))
                 return 5;
               else
                 return radius;
             })
             .attr("fill", function(d){
-              if(d['home'] == d['team1'])
+              if(isHomeTown(d))
                 return "red";
               else
                 return color;
             });
+
+          var legend = svg.append("g")
+                .attr("class", "legend")
+                .attr("transform", "translate(" + (width - 100) + "," + 20 +")")
+                .selectAll("g")
+                .data(["Home Teams", "Others"])
+                .enter().append("g");
+
+          legend.append("circle")
+              .attr("cy", function(d, i){
+                return i*30;
+              })
+              .attr("r", function(d){
+                  if(isHomeLegend(d))
+                    return 5;
+                  else
+                    return radius;
+              })
+              .attr("fill", function(d){
+                  if(isHomeLegend(d))
+                    return "red";
+                  else
+                    return color;
+            });
+
+          legend.append("text")
+              .attr("y", function(d,i){
+                return i * 30 + 5;
+              })
+              .attr("x", radius * 5)
+              .text(function(d){return d;});
         };
       </script>
   </head>
