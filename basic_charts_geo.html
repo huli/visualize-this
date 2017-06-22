@@ -114,8 +114,18 @@
             .attr("cy", function(d){
               return count_scale(d['attendance']);
             })
-            .attr("r", radius)
-            .attr("fill", color);
+            .attr("r", function(d){
+              if(d['home'] == d['team1'])
+                return 5;
+              else
+                return radius;
+            })
+            .attr("fill", function(d){
+              if(d['home'] == d['team1'])
+                return "red";
+              else
+                return color;
+            });
         };
       </script>
   </head>
